@@ -10,7 +10,7 @@ const razorpay = new Razorpay({
     key_secret: 'YOUR RAZORPAY SECRET KEY'
 })
 
-let serviceAccount = require("./YOUR FIREBASE SERVICE ACCOUNT KEY.json")
+let serviceAccount = require("./firebase_secret.json")
 const { randomInt } = require('crypto');
      
 admin.initializeApp({
@@ -85,6 +85,9 @@ app.get('/about', (req, res) => {
 
 app.get('/contact', (req, res) => {
     res.sendFile(path.join(staticPath, "html/contact.html"));
+})
+app.get('/prescription', (req, res) => {
+    res.sendFile(path.join(staticPath, "html/prescription.html"));
 })
 
 app.post('/login', (req, res) => {

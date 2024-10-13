@@ -10,11 +10,12 @@ const razorpay = new Razorpay({
     key_secret: 'YOUR RAZORPAY SECRET KEY'
 })
 
-let serviceAccount = require("./YOUR FIREBASE SERVICE ACCOUNT KEY.json")
+let serviceAccount = require("./firebase_secret.json")
 const { randomInt } = require('crypto');
      
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: "gs://pilltracker-ce296.appspot.com"
 });
 
 let staticPath = path.join(__dirname, "");
@@ -86,6 +87,32 @@ app.get('/about', (req, res) => {
 app.get('/contact', (req, res) => {
     res.sendFile(path.join(staticPath, "html/contact.html"));
 })
+app.get('/prescription', (req, res) => {
+    res.sendFile(path.join(staticPath, "html/prescription.html"));
+})
+
+app.post('/upload-presc', (req, res) => {
+    let { name, addr, pincode, number} = req.body;
+
+    if(!name.length){
+        return res.json({'alert': 'Enter Your Name'});
+    } else if(addr.length > 100 || addr.length < 10){
+        return res.json({'alert': 'Enter Full Address'});
+    } else if(pincode.length != 6){
+        return res.json({'alert': 'Enter 6 Digit PinCode'});
+    } else if(number.length != 10){
+        return res.json({'alert': 'Please enter your 10 digit number'});
+    }
+
+    db.collection('prescOrders').doc(Date.now().toString()).set(req.body)
+    .then(data => {
+        res.json({'product': name});
+    })
+    .catch(err => {
+        return res.json({'alert': 'Some Error Occurred. Try Again'});
+    })
+})
+
 
 app.post('/login', (req, res) => {
     let { email, password } = req.body;

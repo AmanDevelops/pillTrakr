@@ -68,6 +68,7 @@ const createNav = () => {
         <li class="link-item"><a href="./order.html" class="link">Orders</a></li>
         <li class="link-item"><a href="./about.html" class="link">about</a></li>
         <li class="link-item"><a href="./contact.html" class="link">contact</a></li>
+        <li class="link-item"><a href="./prescription" class="link">upload your prescription</a></li>
     </ul>
     `;
 }

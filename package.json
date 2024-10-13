@@ -6,8 +6,10 @@
     "dotenv": "^16.0.3",
     "easyinvoice": "^2.3.3",
     "ejs": "^3.1.8",
+    "express": "^4.21.1",
     "express.js": "^1.0.0",
     "firebase-admin": "^11.3.0",
+    "formidable": "^3.5.1",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.20",
@@ -22,7 +24,7 @@
   "description": "[![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] [![MIT License][license-shield]][license-url] [![LinkedIn][linkedin-shield]][linkedin-url]",
   "version": "1.0.0",
   "main": "server.js",
-  "devDependencies": {},
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": []
 }
